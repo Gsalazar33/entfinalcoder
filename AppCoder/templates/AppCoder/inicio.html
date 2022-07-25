@@ -2,31 +2,36 @@
 {% load static %}
 {% block contenidoQueCambia %}
 
-<div>
-    <h1>Inicio</h1>
-    <h3> Momentaneamente solo disponemos la revision de turnos para PERROS:  </h3> 
-</div>
+
+    <h1>Inicio <br></h1>
+    
+    <h2>Bienvenido {{user.username}}<h2>
+    {% if request.user.is_authenticated %}
+    <button><a href="{% url 'Logout' %}">Salir </a></button>
+    {% endif %}
+     {% if request.user.is_authenticated %}
+    <button><a href="{% url 'EditarPerfil' %}">Editar Perfil </a></button>
+    {% endif %}
+    
+    <h3> <br>Momentaneamente solo disponemos la revision de turnos para PERROS:  </h3> 
+
 <form action="/AppCoder/buscar/" method="GET">
 
-    <input type="number" name="camada" id="camada">
+    <input type="string" name="name" >
 
     <input type="submit" value="Buscar">
 
 </form>
-    {% if nombre %}
+    {% if name in perros %}
 
-    <p>Estamos buscando el: {{name}}</p>
+    <p>Estamos buscando a: {{name}}</p>
 
-    <ul>
-    {% for nombres in nombre %}
-        <li> {{nombres.nombre}} </li>
+        {% for n in perros %}
+            <p> {{n.name}} </p>
         
-    {% endfor %}
-
-    </ul>
+        {% endfor %}
 
     {% endif %}
-
 
 
 {% endblock  %}

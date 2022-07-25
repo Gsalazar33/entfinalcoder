@@ -6,3 +6,5 @@ from AppCoder.models import *
 admin.site.register(Ave)
 admin.site.register(Gato)
 admin.site.register(Perro)
+admin.site.register(Avatar)
+admin.site.register(Post)

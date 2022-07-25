@@ -34,41 +34,89 @@
 </head>
 <body>
 	<!-- section banner start -->
-	<div class="header_section">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-4">
-					<div><a href="index.html"><img src="{%static 'AppCoder/images/logo.png' %}"></a></div>
-				</div>
-				<div class="col-md-8">
-					<div class="menu_text">
-						<ul>
+	<!--<div class="header_section">
+		<div class="">
+			<div class="">-->
+				
+				<!--<div class="col-md-8">-->
+					<!--<div class="menu_text">-->
+
+				<nav class="topnav">
+            					<div class="container">
+                             	
+								<a href="{% url 'About' %}">Nosotros</a>
+                                <a href="{% url 'Perros' %}">Perros</a>
+                                <a href="{% url 'Gatos' %}">Gatos</a>
+                                <a href="{% url 'Aves' %}">Aves</a>
+								<a href="{% url 'Blog' %}">Blog</a>
+								<a href="{% url 'List' %}">Lista Gatos</a>
+								{% if request.user.is_aunthenticated %}
+								<a href="{% url 'EditarPerfil' %}">Perfil usuario</a>
+								{% endif %}
+								{% if not request.user.is_aunthenticated %}
+							    <a class="btn btn-primary" style="font-size:15px;color: #f7941d;" href="{% url 'Login' %}">&#128100; Ingresar</a>
+							    {% endif %}
+								{% if not  request.user.is_aunthenticated %}
+								<a class="btn btn-primary" style="font-size:15px;color: #f7941d;" href="{% url 'Register' %}">&#10010; Registrar</a>
+								{% endif %}
+
+								{% if request.user.is_authenticated %}
+                
+                				<h3 class="text-muted small mb-4 mb-lg-0" style="font-size:15px;color: #f7941d;">Bienvenido, {{user.first_name}} </h3>
+                				<img src="{{url}}" style="height: 40px; width: 45px;" >
+                				{% endif %}
+                              	</div>
+            		
+        		</nav>
+		<div class="header_section">
+						<div class="col-md-4">
+							<div><a href="index.html"><img src="{%static 'AppCoder/images/logo.png' %}"></a></div>
+				
+
+						<!--<ul>
 							
 							
 							<li class="active">
 							 <div id="myNav" class="overlay">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                              <div class="overlay-content">
+							 	{% if not  request.user.is_aunthenticated %}
+							    <a class="btn btn-primary" style="font-size:25px;color: #f7941d;" href="{% url 'Login' %}">&#128100; Ingresar</a>
+							    {% endif %}
+								{% if not  request.user.is_aunthenticated %}
+								<a class="btn btn-primary" style="font-size:25px;color: #f7941d;" href="{% url 'Register' %}">&#10010; Registrar</a>
+								{% endif %}
                              	<a href="{% url 'Inicio' %}">Inicio</a>
+								<a href="{% url 'About' %}">Nosotros</a>
                                 <a href="{% url 'Perros' %}">Perros</a>
                                 <a href="{% url 'Gatos' %}">Gatos</a>
                                 <a href="{% url 'Aves' %}">Aves</a>
+								<a href="{% url 'List' %}">Gato Lista ADMIN</a>
+								{% if not  request.user.is_aunthenticated %}
+								<a href="{% url 'EditarPerfil' %}">Perfil usuario</a>
+								{% endif %}
                               </div>
                             </div>
                              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
                             </div>	
                             </li>
-						</ul>
-					</div>
-			</div>
+						</ul>-->
+					<!--</div>-->
+				
+			
 		</div>
+
+
+
+
+
 		<div class="banner_main">
 			<div class="container">
 				<div class="ram">
 					<div class="row">
 					    <div class="col-sm-12">
 						    <h1 class="taital">Veterinaria PETTOS.</h1>
-						    <p class="consectetur_text">Mas de 10 anios cuidando de sus mascotas</p>
+						    <p class="consectetur_text">Más de 10 años cuidando de sus mascotas</p>
 						    
 					    </div>
 				    </div>
@@ -80,6 +128,13 @@
 		</div>
 	</div>
 	<!-- section banner end -->
+	{% block  contenidoQueCambia %}
+
+
+
+	
+
+    {% endblock  %}
 	<!-- section about start -->
 	<div class="about_section">
 		<div class="about_text">
@@ -169,9 +224,7 @@
     </div>
 	<!-- section gallery end -->
 
-    {% block  contenidoQueCambia%}
     
-    {% endblock  %}
 
 	<!-- section footer start -->
     <div class="section_footer">
@@ -179,8 +232,8 @@
     		<div class="mail_section">
     			<ul>
     				<li class="footer-logo"><img src="{%static 'AppCoder/images/footer-logo.png' %}"></li>
-    				<li class="footer-logo"><img src="{%static 'AppCoder/images/map-icon.png' %}"><span class="map_text">Av obelisco 123</span></li>
-    				<li class="footer-logo"><img src="{%static 'AppCoder/images/call-icon.png' %}"><span class="map_text">54 9 11 12345678</span></li>
+    				<li class="footer-logo"><img src="{%static 'AppCoder/images/map-icon.png' %}"><span class="map_text">Av. Obelisco 123</span></li>
+    				<li class="footer-logo"><img src="{%static 'AppCoder/images/call-icon.png' %}"><span class="map_text">+54 9 11 12345678</span></li>
     				<li class="footer-logo"><img src="{%static 'AppCoder/images/email-icon.png' %}"><span class="map_text">PETTOS@test.com</span></li>
     			</ul>
     	    </div> 
@@ -189,7 +242,7 @@
     		        
     		        
     			<div class="col-sm-6 col-md-6 col-lg-3">
-    				<h2 class="adderess_text">Instagram</h2>
+    				<h2 class="adderess_text" ><img src="{%static 'AppCoder/images/ig-icon.png'%}"> Instagram</h2>
     				<div class="footer-img">
     					<div class="row">
     						<div class="col-sm-6">
